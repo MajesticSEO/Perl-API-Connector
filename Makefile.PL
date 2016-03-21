@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'MJ12::Remote::Response',
-    AUTHOR              => q{James Lee <jamesl@majestic12.co.uk>},
+    AUTHOR              => q{Majestic <support@majestic.com>},
     VERSION_FROM        => 'lib/MJ12/Remote/Response.pm',
     ABSTRACT_FROM       => 'lib/MJ12/Remote/Response.pm',
     ($ExtUtils::MakeMaker::VERSION >= 6.3002

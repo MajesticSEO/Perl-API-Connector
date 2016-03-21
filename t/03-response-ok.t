@@ -10,18 +10,11 @@ use MJ12::Remote::Response;
 my $remote_response = <<'REMOTE';
 <?xml version="1.0" encoding="utf-8"?>
 <Result Code="OK" ErrorMessage="" FullError="">
-		<GlobalVars APIAccess="1" CustomerAdvancedReportsRemaining="20" CustomerAvailableAnalysisResUnits="100000000" CustomerCreditLimit="0" CustomerCredits="0.00" CustomerEmail="jamesl@majestic12.co.uk" CustomerIsAdmin="1" CustomerName="James Lee" CustomerStandardReportBacklinksShown="5000" CustomerStandardReportsRemaining="20" CustomerSubscriptions="1" DeveloperAPIAccess="1" ServerName="LEEPFROG" ThirdPartyAPIAccess="0"/>
-	<DataTables Count="3">
-		<DataTable Name="Folders" RowsCount="0" Headers="FolderName|Created|FoldersInside|DomainsInside">
-		</DataTable>
-		<DataTable Name="AdvancedReports" RowsCount="2" Headers="ReportName|ReportCode|ReportLocked|Domain|LastUpdated|Status|SubDomains|Pages|Links|TotalBackLinks|ExtBackLinks|ExtDomains|ExtUniqueIPs|MaxPageACRank|MaxRefACRank|FreshNewBackLinks|FreshNewRefDomains|HumanLastFreshUpdateDate|LastFreshUpdateDate|AnalysisProgressInfo|Expires">
-			<Row>aston.ac.uk|38CAFFEFB0B93EF7|0|aston.ac.uk|23/09/2010 13:59:15|Analysed|6|0|12|220|205|8|8|1|0|0|0| | | | </Row>
-			<Row>google.com|270335686AF4C784|0| |23/09/2010 17:04:09|Analysed|1|1|0|527322|483148|3327|2553|11|7|0|0| | | | </Row>
-		</DataTable>
-		<DataTable Name="StandardReports" RowsCount="3" Headers="ReportName|ReportCode|ReportLocked|Created|Status|URL|SubDomain|Domain|TotalUrlBackLinks|TotalSubDomainBackLinks|TotalDomainBackLinks|ExternalUrlBackLinks|ExternalSubDomainBackLinks|ExternalDomainBackLinks|AvailableUrlBackLinks|AvailableSubDomainBackLinks|AvailableDomainBackLinks|UrlRefDomains|SubDomainRefDomains|DomainRefDomains|AvailableUrlRefDomains|AvailableSubDomainRefDomains|AvailableDomainRefDomains">
-			<Row>google.com|1B7D13BF0D527022|0|24/09/2010 15:44:22|Analysed|http://www.google.com|www.google.com|google.com|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0</Row>
-			<Row>www.google.com|CB5FD1045B13C9D6|0|30/09/2010 10:14:15|Analysed|http://www.google.com|www.google.com|google.com|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0</Row>
-			<Row>www.bbc.co.uk|425ECFA6F96DCC33|0|05/10/2010 14:55:51|Analysed|http://www.bbc.co.uk|www.bbc.co.uk|bbc.co.uk|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0</Row>
+	<GlobalVars FirstBackLinkDate="2012-05-01" IndexBuildDate="2015-11-20 21:08:49" IndexType="0" MostRecentBackLinkDate="2015-10-21" ServerBuild="2015-10-23 14:17:16" ServerName="DAVE" ServerVersion="1.0.5774.23918" UniqueIndexID="20151120210849-HISTORICAL"/>
+	<DataTables Count="1">
+		<DataTable Name="Results" RowsCount="2" Headers="ItemNum|Item|ResultCode|Status|ExtBackLinks|RefDomains|AnalysisResUnitsCost|ACRank|ItemType|IndexedURLs|GetTopBackLinksAnalysisResUnitsCost|DownloadBacklinksAnalysisResUnitsCost|DownloadRefDomainBacklinksAnalysisResUnitsCost|RefIPs|RefSubNets|RefDomainsEDU|ExtBackLinksEDU|RefDomainsGOV|ExtBackLinksGOV|RefDomainsEDU_Exact|ExtBackLinksEDU_Exact|RefDomainsGOV_Exact|ExtBackLinksGOV_Exact|CrawledFlag|LastCrawlDate|LastCrawlResult|RedirectFlag|FinalRedirectResult|OutDomainsExternal|OutLinksExternal|OutLinksInternal|LastSeen|Title|RedirectTo|CitationFlow|TrustFlow|TrustMetric|TopicalTrustFlow_Topic_0|TopicalTrustFlow_Value_0|TopicalTrustFlow_Topic_1|TopicalTrustFlow_Value_1|TopicalTrustFlow_Topic_2|TopicalTrustFlow_Value_2" MaxTopicsRootDomain="30" MaxTopicsSubDomain="20" MaxTopicsURL="10" TopicsCount="3">
+			<Row>0|http://majestic.com/|OK|Found|8|7|8|3|3|1|5000|25000|25000|4|4|0|0|0|0|0|0|0|0|False| | |False| |0|0|0|2015-10-21| | |0|0|0| | | | | | </Row>
+			<Row>1|majestic.com|OK|Found|4516|48|4516|-1|1|153152|5000|157668|50960|45|43|0|0|0|0|0|0|0|0|False| | |False| |0|0|0| |Majestic®: Marketing Search Engine and SEO Backlink Checker| |81|23|23|Computers/Software/Online Training|22|Computers/Computer Science/Distributed Computing|18|Computers/Programming/Internet|8</Row>
 		</DataTable>
 	</DataTables>
 </Result>
@@ -38,27 +31,21 @@ is($response->errorMessage, '', 'wrong error message');
 
 my %params = $response->globalParams;
 is_deeply(\%params, {
-	'APIAccess' => 1,
-	'CustomerAdvancedReportsRemaining' => 20,
-	'CustomerAvailableAnalysisResUnits' => 100000000,
-	'CustomerCreditLimit' => 0,
-	'CustomerCredits' => '0.00',
-	'CustomerEmail' => 'jamesl@majestic12.co.uk',
-	'CustomerIsAdmin' => 1,
-	'CustomerName' => 'James Lee',
-	'CustomerStandardReportBacklinksShown' => 5000,
-	'CustomerStandardReportsRemaining' => 20,
-	'CustomerSubscriptions' => 1,
-	'DeveloperAPIAccess' => 1,
-	'ServerName' => 'LEEPFROG',
-	'ThirdPartyAPIAccess' => 0,
-			}, 'wrong params');
+	'FirstBackLinkDate' => '2012-05-01',
+	'IndexBuildDate' => '2015-11-20 21:08:49',
+	'IndexType' => 0,
+	'MostRecentBackLinkDate' => '2015-10-21',
+	'ServerBuild' => '2015-10-23 14:17:16',
+	'ServerName' => 'DAVE',
+	'ServerVersion' => '1.0.5774.23918',
+	'UniqueIndexID' => '20151120210849-HISTORICAL',
+}, 'wrong params');
 
-is($response->paramForName('Name' => 'CustomerStandardReportsRemaining'), 20, 'wrong CustomerStandardReportsRemaining param');
+is($response->paramForName('Name' => 'ServerName'), 'DAVE', 'wrong ServerName param');
 is($response->paramForName('Name' => 'unknown'), undef, 'wrong unknown param');
 
-my $advanced_reports_table = $response->tableForName('Name' => 'AdvancedReports');
-is($advanced_reports_table->rowCount, 2, 'wrong number of advanced report rows');
+my $advanced_reports_table = $response->tableForName('Name' => 'Results');
+is($advanced_reports_table->rowCount, 2, 'wrong number of result rows');
 
 my $unknown_table = $response->tableForName('Name' => 'unknown');
 is($unknown_table->rowCount, 0, 'wrong number of unknown rows ... should return empty datatable instance');
